@@ -3,57 +3,81 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Confira os detalhes do seu pedido de camiseta.">
+    <meta name="description" content="MGB Shoes: confira os detalhes do seu pedido de camiseta.">
     <title>MGB Shoes | Conferência de pedidos</title>
     <style>
       :root {
-        --ink: #132033;
-        --muted: #637086;
-        --paper: #f5f7fb;
+        --black: #070809;
+        --charcoal: #12151b;
+        --silver: #e9edf3;
+        --steel: #aeb7c5;
+        --line: #2c323d;
+        --red: #e31b23;
+        --blue: #2f65e5;
+        --paper: #f1f3f6;
         --card: #ffffff;
-        --line: #dce3ee;
-        --brand: #e53c2f;
-        --brand-dark: #b72d23;
-        --navy: #0d1b2a;
-        --shadow: 0 12px 32px rgba(17, 35, 60, .10);
+        --shadow: 0 18px 42px rgba(7, 8, 9, .13);
       }
 
       * { box-sizing: border-box; }
 
       body {
         margin: 0;
-        color: var(--ink);
+        color: var(--charcoal);
         background: var(--paper);
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: Tahoma, Verdana, sans-serif;
         line-height: 1.45;
       }
 
       header {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
         color: white;
-        background:
-          radial-gradient(circle at 88% 18%, rgba(229, 60, 47, .9) 0, rgba(229, 60, 47, 0) 27%),
-          linear-gradient(135deg, #0d1b2a, #18324e);
+        background: var(--black);
+        border-bottom: 4px solid var(--silver);
       }
+
+      header::before,
+      header::after {
+        position: absolute;
+        z-index: -1;
+        width: 52vw;
+        height: 7px;
+        content: "";
+        transform: rotate(-13deg);
+        transform-origin: left center;
+      }
+
+      header::before { top: 28px; right: -12vw; background: var(--red); box-shadow: 0 15px 0 var(--blue); }
+      header::after { bottom: 16px; left: -11vw; background: var(--blue); box-shadow: 0 -15px 0 var(--red); }
+
+      .brand-bar {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 24px 0 6px;
+      }
+
+      .brand-logo {
+        display: block;
+        width: min(195px, 46vw);
+        height: auto;
+      }
+
+      .site-nav { display: flex; gap: 22px; margin-top: 18px; }
+      .site-nav a { padding: 7px 0; color: var(--silver); font-size: .86rem; font-weight: 800; letter-spacing: .055em; text-decoration: none; text-transform: uppercase; border-bottom: 2px solid transparent; }
+      .site-nav a:hover, .site-nav a:focus-visible, .site-nav a[aria-current="page"] { color: white; border-bottom-color: var(--red); outline: none; }
 
       .hero {
         width: min(1120px, calc(100% - 32px));
         margin: 0 auto;
-        padding: 54px 0 42px;
+        padding: 18px 0 54px;
       }
 
-      .eyebrow {
-        margin: 0 0 12px;
-        color: #ffb5ae;
-        font-size: .78rem;
-        font-weight: 800;
-        letter-spacing: .12em;
-        text-transform: uppercase;
-      }
+      h1 { margin: 0; max-width: 700px; font-size: clamp(2.25rem, 6vw, 4.1rem); font-weight: 800; letter-spacing: -.035em; line-height: .98; }
+      .hero p { max-width: 590px; margin: 17px 0 0; color: var(--silver); font-size: 1.04rem; }
 
-      h1 { margin: 0; font-size: clamp(2rem, 6vw, 3.6rem); line-height: 1.05; }
-      .hero p { max-width: 640px; margin: 18px 0 0; color: #d9e5f4; font-size: 1.08rem; }
-
-      main { width: min(1120px, calc(100% - 32px)); margin: -18px auto 56px; }
+      main { width: min(1120px, calc(100% - 32px)); margin: -22px auto 56px; }
 
       .lookup {
         display: grid;
@@ -62,85 +86,123 @@
         align-items: center;
         padding: 20px;
         background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 16px;
+        border: 1px solid #d7dce5;
+        border-radius: 14px;
         box-shadow: var(--shadow);
       }
 
-      label { display: block; margin-bottom: 7px; color: var(--muted); font-size: .9rem; font-weight: 700; }
+      label { display: block; margin-bottom: 7px; color: #555e6d; font-size: .85rem; font-weight: 800; letter-spacing: .055em; text-transform: uppercase; }
       input {
         width: 100%;
         padding: 14px 15px;
-        color: var(--ink);
+        color: var(--charcoal);
         font: inherit;
-        border: 1px solid #b9c5d5;
-        border-radius: 10px;
+        border: 1px solid #bfc7d4;
+        border-radius: 9px;
         outline: none;
       }
-      input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(229, 60, 47, .18); }
-      .count { color: var(--muted); font-size: .92rem; font-weight: 700; white-space: nowrap; }
+      input::placeholder { color: #727b88; opacity: 1; }
+      input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(47, 101, 229, .20); }
+      .count { color: #555e6d; font-size: .9rem; font-weight: 800; white-space: nowrap; }
 
       .notice {
         margin: 28px 0 20px;
-        padding: 14px 16px;
-        color: #38465b;
-        background: #fff9e9;
-        border-left: 4px solid #f0b429;
-        border-radius: 6px;
+        padding: 13px 0;
+        color: #3c4552;
+        font-size: .96rem;
+        text-align: center;
       }
 
       .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
       .card {
         overflow: hidden;
         background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        box-shadow: 0 4px 14px rgba(18, 35, 60, .06);
+        border: 1px solid #d7dce5;
+        border-radius: 14px;
+        box-shadow: 0 8px 22px rgba(12, 15, 20, .07);
+        transition: transform 180ms ease, box-shadow 180ms ease;
       }
+      .card:hover { box-shadow: 0 15px 30px rgba(12, 15, 20, .15); transform: translateY(-3px); }
 
       .photo, .no-photo {
         width: 100%;
         height: 265px;
         display: block;
         object-fit: cover;
-        background: #e8edf3;
+        background: #e5e9ef;
       }
       .no-photo {
         display: grid;
         place-items: center;
         padding: 24px;
-        color: var(--muted);
+        color: #555e6d;
         text-align: center;
         font-weight: 700;
-        background: repeating-linear-gradient(135deg, #edf1f6, #edf1f6 9px, #e5ebf2 9px, #e5ebf2 18px);
+        background: #e5e9ef;
       }
 
       .details { padding: 18px; }
-      .person { margin: 0 0 4px; color: var(--brand-dark); font-size: .78rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
-      .shirt { margin: 0; font-size: 1.22rem; line-height: 1.15; }
+      .person { margin: 0 0 5px; color: var(--red); font-size: .76rem; font-weight: 800; letter-spacing: .10em; text-transform: uppercase; }
+      .shirt { margin: 0; color: var(--black); font-size: 1.22rem; line-height: 1.15; }
       .specs { margin: 16px 0 0; padding: 0; list-style: none; }
-      .specs li { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-top: 1px solid #edf0f4; font-size: .92rem; }
-      .specs span { color: var(--muted); }
+      .specs li { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-top: 1px solid #e7eaf0; font-size: .92rem; }
+      .specs span { color: #667080; }
       .specs strong { text-align: right; }
-      .unknown { color: var(--muted); font-style: italic; font-weight: normal; }
+      .unknown { color: #667080; font-style: italic; font-weight: normal; }
 
-      .empty { display: none; margin: 36px 0; color: var(--muted); text-align: center; }
-      footer { margin-top: 44px; color: var(--muted); text-align: center; font-size: .9rem; }
+      .empty { display: none; margin: 36px 0; color: #667080; text-align: center; }
+      footer { margin-top: 44px; padding-top: 18px; color: #677181; border-top: 1px solid #d6dce5; text-align: center; font-size: .88rem; }
+
+      body.locked { overflow: hidden; }
+      .access-gate { position: fixed; z-index: 10; inset: 0; display: grid; place-items: center; padding: 24px; overflow-y: auto; background: var(--black); }
+      .access-gate::before, .access-gate::after { position: absolute; width: min(700px, 125vw); height: 9px; content: ""; transform: rotate(-15deg); }
+      .access-gate::before { top: 20%; right: -10%; background: var(--red); box-shadow: 0 18px 0 var(--blue); }
+      .access-gate::after { bottom: 18%; left: -9%; background: var(--blue); box-shadow: 0 -18px 0 var(--red); }
+      .access-gate[hidden] { display: none; }
+      .access-box { position: relative; width: min(430px, 100%); padding: 34px; background: white; border-radius: 14px; box-shadow: 0 24px 60px rgba(0, 0, 0, .42); }
+      .access-logo { display: block; width: 180px; max-width: 72%; margin: 0 0 28px; }
+      .access-box h1 { max-width: none; color: var(--black); font-size: clamp(2rem, 7vw, 3.1rem); letter-spacing: -.04em; }
+      .access-box p { margin: 14px 0 24px; color: #596372; }
+      .access-form label { color: #555e6d; }
+      .access-form input { margin-bottom: 14px; }
+      .access-form button { width: 100%; padding: 14px 18px; color: white; background: var(--black); border: 0; border-radius: 9px; cursor: pointer; font: inherit; font-weight: 800; }
+      .access-form button:hover { background: var(--blue); }
+      .access-error { min-height: 1.4em; margin: 12px 0 0; color: #ba121b; font-weight: 700; }
 
       @media (max-width: 820px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
       @media (max-width: 560px) {
-        .hero { padding-top: 42px; }
+        .brand-bar { padding-top: 18px; }
+        .hero { padding-top: 24px; }
         .lookup { grid-template-columns: 1fr; gap: 10px; }
         .count { white-space: normal; }
         .grid { grid-template-columns: 1fr; }
         .photo, .no-photo { height: 310px; }
       }
-    
-  </style><style>body{background:#f1f3f6}</style><style>:root{--black:#070809;--charcoal:#12151b;--silver:#e9edf3;--red:#e31b23;--blue:#2f65e5;--paper:#f1f3f6;--line:#d7dce5;--shadow:0 18px 42px rgba(7,8,9,.13)}body{color:var(--charcoal);background:var(--paper);font-family:Tahoma,Verdana,sans-serif}</style><style>header{position:relative;isolation:isolate;overflow:hidden;background:var(--black);border-bottom:4px solid var(--silver)}header:before,header:after{position:absolute;z-index:-1;width:52vw;height:7px;content:"";transform:rotate(-13deg);transform-origin:left center}header:before{top:28px;right:-12vw;background:var(--red);box-shadow:0 15px 0 var(--blue)}header:after{bottom:16px;left:-11vw;background:var(--blue);box-shadow:0 -15px 0 var(--red)}</style><style>.brand-logo{display:block;width:min(195px,46vw);height:auto;margin:0 0 18px}.hero{padding:42px 0 54px}.hero h1{max-width:700px;font-size:clamp(2.25rem,6vw,4.1rem);font-weight:800;letter-spacing:-.035em;line-height:.98}.hero p{max-width:590px;margin:17px 0 0;color:var(--silver);font-size:1.04rem}.eyebrow{display:none}main{margin:-22px auto 56px}</style><style>.lookup{border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}label{color:#555e6d;font-size:.85rem;font-weight:800;letter-spacing:.055em;text-transform:uppercase}input{color:var(--charcoal);border:1px solid #bfc7d4;border-radius:9px}input::placeholder{color:#727b88;opacity:1}input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(47,101,229,.2)}.count{color:#555e6d;font-weight:800}</style><style>.notice{padding:13px 0;color:#3c4552;background:transparent;border:0;text-align:center}.card{border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 22px rgba(12,15,20,.07);transition:transform 180ms ease,box-shadow 180ms ease}.card:hover{box-shadow:0 15px 30px rgba(12,15,20,.15);transform:translateY(-3px)}.person{color:var(--red)}.shirt{color:var(--black)}.specs li{border-top-color:#e7eaf0}.specs span,.unknown,.empty,footer{color:#667080}footer{padding-top:18px;border-top:1px solid #d6dce5}@media(max-width:560px){.hero{padding-top:28px}}</style></head>
-  <body>
+    </style>
+  </head>
+  <body class="locked">
+    <section id="accessGate" class="access-gate" aria-label="Acesso à conferência de pedidos">
+      <div class="access-box">
+        <img class="access-logo" src="logo-mgb-shoes.png" alt="MGB Shoes">
+        <h1>Área de pedidos</h1>
+        <p>Digite a senha para consultar os pedidos e as tabelas de medidas.</p>
+        <form id="accessForm" class="access-form">
+          <label for="accessPassword">Senha de acesso</label>
+          <input id="accessPassword" type="password" autocomplete="current-password" required>
+          <button type="submit">Entrar</button>
+          <p id="accessError" class="access-error" role="alert" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
     <header>
-      <div class="hero">
+      <div class="brand-bar">
         <img class="brand-logo" src="logo-mgb-shoes.png" alt="MGB Shoes">
+        <nav class="site-nav" aria-label="Navegação principal">
+          <a href="index.html" aria-current="page">Pedidos</a>
+          <a href="tamanhos.html">Tamanhos</a>
+        </nav>
+      </div>
+      <div class="hero">
         <h1>Confira o seu pedido</h1>
         <p>Encontre a camiseta, a versão, o tamanho e as observações do seu pedido.</p>
       </div>
@@ -241,6 +303,33 @@
     </main>
 
     <script>
+      const accessGate = document.querySelector('#accessGate');
+      const accessForm = document.querySelector('#accessForm');
+      const accessPassword = document.querySelector('#accessPassword');
+      const accessError = document.querySelector('#accessError');
+
+      function unlock() {
+        sessionStorage.setItem('mgb-access', 'granted');
+        document.body.classList.remove('locked');
+        accessGate.hidden = true;
+      }
+
+      if (sessionStorage.getItem('mgb-access') === 'granted') {
+        unlock();
+      } else {
+        accessPassword.focus();
+      }
+
+      accessForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (accessPassword.value === 'mgbshoes') {
+          unlock();
+        } else {
+          accessError.textContent = 'Senha incorreta. Tente novamente.';
+          accessPassword.select();
+        }
+      });
+
       const search = document.querySelector('#search');
       const cards = [...document.querySelectorAll('.card')];
       const count = document.querySelector('#count');
